@@ -5,11 +5,19 @@
  */
 package projectoii;
 
+import UI.Login;
+import UI.registo;
 import bll.ClienteBLL;
+import bll.VendaBLL;
 import bll.funcionarioBLL;
+import java.awt.Color;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import model.Cliente;
 import model.Funcionario;
+import model.Lote;
+import model.Venda;
 
 
 
@@ -24,13 +32,14 @@ public class ProjectoII {
      */
    
     public static void main(String[] args) {
-        Cliente b1 = new Cliente();
-     
+      
+        Login v = new Login();
+        v.setVisible(true);
         
-   
-                 
-        ClienteBLL.refreshEntity(b1);
+        
+            }
+
         
     }
     
-}
+
