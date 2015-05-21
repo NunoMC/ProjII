@@ -5,19 +5,36 @@
  */
 package UI;
 
+import bll.Ficheiro;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
  * @author NunoM
  */
 public class registo extends javax.swing.JFrame {
-   
-    /**
-     * Creates new form registo
-     */
+    
+     Ficheiro f = new Ficheiro();
+    
+    String[] dados = {"","Funcionário","Administrador"};
+    
+    
     public registo() {
+     
+                UIManager.put("OptionPane.yesButtonText", "Sim");  
+UIManager.put("OptionPane.noButtonText", "Não");  
+
         initComponents();
+          
+    for(int i = 0; i < dados.length; i++) {
+    ComboBox.addItem(dados[i]);
+}
+      
     }
 
     /**
@@ -33,11 +50,11 @@ public class registo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        fielduser = new javax.swing.JTextField();
+        UserReg = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        fieldpass = new javax.swing.JTextField();
+        PassReg = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        ComboBox = new javax.swing.JComboBox();
         botaoRegistar = new javax.swing.JButton();
         botaocancelar = new javax.swing.JButton();
 
@@ -47,17 +64,15 @@ public class registo extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(674, 409));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\NunoM\\Desktop\\loja.png")); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel2.setText("Ficha de Registo");
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel3.setText("Username");
 
-        fielduser.addActionListener(new java.awt.event.ActionListener() {
+        UserReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fielduserActionPerformed(evt);
+                UserRegActionPerformed(evt);
             }
         });
 
@@ -67,9 +82,12 @@ public class registo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel5.setText("Escolha o Tipo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Funcionário" }));
-
         botaoRegistar.setText("Registar");
+        botaoRegistar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRegistarActionPerformed(evt);
+            }
+        });
 
         botaocancelar.setText("Cancelar");
         botaocancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,13 +118,13 @@ public class registo extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(fieldpass)
-                    .addComponent(fielduser, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PassReg)
+                    .addComponent(UserReg, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botaoRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)
                         .addComponent(botaocancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(214, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,16 +138,16 @@ public class registo extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(fielduser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(fieldpass, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                    .addComponent(PassReg, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                    .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaocancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,19 +174,69 @@ public class registo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fielduserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fielduserActionPerformed
+    private void UserRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserRegActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fielduserActionPerformed
+    }//GEN-LAST:event_UserRegActionPerformed
 
     private void botaocancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaocancelarActionPerformed
-       Login log = new Login();
+
+        
+        
+String message = "Deseja realmente cancelar?";
+String title = "Confirmação";
+ String nomeArq = "RegistarNovosAdmin.txt";
+//Exibe caixa de dialogo (veja figura) solicitando confirmação ou não. 
+//Se o usuário clicar em "Sim" retorna 0 pra variavel reply, se informado não retorna 1
+
+
+
+int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+  if (reply == JOptionPane.YES_OPTION)
+  {
+   this.dispose();
+    Login log = new Login();
       this.setVisible(false);
       log.setVisible(true);
-    
-      
-      
+  }
+
       
     }//GEN-LAST:event_botaocancelarActionPerformed
+
+    private void botaoRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistarActionPerformed
+   String nomeArq = "RegistarNovosAdmin.txt";
+             String nomeArq2 = "RegistarNovosFunc.txt";
+
+        String idItem = (String) ComboBox.getSelectedItem();
+          if(idItem.equals("Funcionário"))
+        {
+             try {
+            f.criarFicheiro(nomeArq2);
+        } catch (IOException ex) {
+            Logger.getLogger(registo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                 try {
+                     f.escreverFicheiro("user" + UserReg.getText(),"pass" + PassReg.getText(),nomeArq2);
+                 } catch (IOException ex) {
+                     Logger.getLogger(registo.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+
+                         }
+          
+            if(idItem.equals("Administrador"))
+        {
+                 try {
+                     f.criarFicheiro(nomeArq);
+                 } catch (IOException ex) {
+                     Logger.getLogger(registo.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                 
+                 try {
+                     f.escreverFicheiro("user" + UserReg.getText(),"pass" + PassReg.getText(),nomeArq);
+                 } catch (IOException ex) {
+                     Logger.getLogger(registo.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+        }
+    }//GEN-LAST:event_botaoRegistarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,11 +276,11 @@ public class registo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox ComboBox;
+    private javax.swing.JTextField PassReg;
+    private javax.swing.JTextField UserReg;
     private javax.swing.JButton botaoRegistar;
     private javax.swing.JButton botaocancelar;
-    private javax.swing.JTextField fieldpass;
-    private javax.swing.JTextField fielduser;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -80,14 +80,14 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="fieldpass" max="32767" attributes="0"/>
-                      <Component id="fielduser" alignment="0" max="32767" attributes="0"/>
+                      <Component id="PassReg" max="32767" attributes="0"/>
+                      <Component id="UserReg" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="botaoRegistar" min="-2" pref="110" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                           <Component id="botaocancelar" min="-2" pref="110" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jComboBox1" max="32767" attributes="0"/>
+                      <Component id="ComboBox" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="214" max="32767" attributes="0"/>
               </Group>
@@ -106,19 +106,19 @@
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fielduser" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="UserReg" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fieldpass" alignment="3" pref="33" max="32767" attributes="0"/>
+                      <Component id="PassReg" alignment="3" pref="33" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="ComboBox" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="botaocancelar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="botaoRegistar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -130,11 +130,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\NunoM\Desktop\loja.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -152,9 +147,9 @@
             <Property name="text" type="java.lang.String" value="Username"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="fielduser">
+        <Component class="javax.swing.JTextField" name="UserReg">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fielduserActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserRegActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -165,7 +160,7 @@
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="fieldpass">
+        <Component class="javax.swing.JTextField" name="PassReg">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -175,13 +170,10 @@
             <Property name="text" type="java.lang.String" value="Escolha o Tipo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="ComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Administrador"/>
-                <StringItem index="1" value="Funcion&#xe1;rio"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
         </Component>
@@ -189,6 +181,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Registar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRegistarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botaocancelar">
           <Properties>
