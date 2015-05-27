@@ -50,7 +50,7 @@ public class Lote implements Serializable {
     @SequenceGenerator(
         name="seqLote",
         sequenceName="IN_LOTE", 
-        allocationSize=25
+        allocationSize=1
     )
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="seqLote")
@@ -58,13 +58,13 @@ public class Lote implements Serializable {
     private Integer idLote;
     @Basic(optional = false)
     @Column(name = "QUANTIDADE")
-    private BigInteger quantidade;
+    private BigDecimal quantidade;
     @Basic(optional = false)
     @Column(name = "DATA_CHEGADA")
     @Temporal(TemporalType.DATE)
     private Date dataChegada;
     @Column(name = "QTDLIXO")
-    private BigInteger qtdlixo;
+    private BigDecimal qtdlixo;
     @Column(name = "PRECO")
     private BigDecimal preco;
     @Column(name = "QTDCOMPRA")
@@ -82,7 +82,7 @@ public class Lote implements Serializable {
         this.idLote = idLote;
     }
 
-    public Lote(Integer idLote, BigInteger quantidade, Date dataChegada) {
+    public Lote(Integer idLote, BigDecimal quantidade, Date dataChegada) {
         this.idLote = idLote;
         this.quantidade = quantidade;
         this.dataChegada = dataChegada;
@@ -96,11 +96,11 @@ public class Lote implements Serializable {
         this.idLote = idLote;
     }
 
-    public BigInteger getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(BigInteger quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -112,11 +112,11 @@ public class Lote implements Serializable {
         this.dataChegada = dataChegada;
     }
 
-    public BigInteger getQtdlixo() {
+    public BigDecimal getQtdlixo() {
         return qtdlixo;
     }
 
-    public void setQtdlixo(BigInteger qtdlixo) {
+    public void setQtdlixo(BigDecimal qtdlixo) {
         this.qtdlixo = qtdlixo;
     }
 

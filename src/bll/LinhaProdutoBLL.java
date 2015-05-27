@@ -42,9 +42,10 @@ public static void create(Linhaproduto lt)
     {
         EntityManager em = BLLEntityManager.getEntityManager();
         em.getTransaction().begin();
+        lt = em.merge(lt);
         em.remove(lt);
         em.getTransaction().commit();
-        em.clear();    
+        em.clear();   
     }
     
     public static void refreshEntity(Linhaproduto lt)

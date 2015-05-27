@@ -39,7 +39,7 @@ public class Produto implements Serializable {
      @SequenceGenerator(
         name="seqProduto",
         sequenceName="IN_PRODUTO", 
-        allocationSize=25
+        allocationSize=2
     )
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="seqProduto")

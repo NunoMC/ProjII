@@ -6,6 +6,8 @@
 package bll;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.Produto;
@@ -27,28 +29,42 @@ public class ProdutoBLL {
         
         em.clear(); 
     }
+        
+    public static void delete(Produto prod)
+    {
+        EntityManager em = BLLEntityManager.getEntityManager();
+        em.getTransaction().begin();
+        prod = em.merge(prod);
+        em.remove(prod);
+        em.getTransaction().commit();
+        em.clear();     
+    }
     
     public static Produto retrieve(int id)
     {
         EntityManager em = BLLEntityManager.getEntityManager();
         Query q = em.createNamedQuery("Produto.findByIdProduto")
                       .setParameter("idProduto", id);
-        Produto prod = (Produto)q.getResultList().get(0);
+       
+        
+          if(!q.getResultList().isEmpty()){
+
+             Produto prod = (Produto)q.getResultList().get(0);
         return prod;
+        }
+        return null;
     }
 
    
-
-     
-    public static void delete(Produto prod)
+   public static List<Produto> retrieveALL()
     {
+        List<Produto> listaprod = new ArrayList<>();
         EntityManager em = BLLEntityManager.getEntityManager();
-        em.getTransaction().begin();
-        em.remove(prod);
-        em.getTransaction().commit();
-        em.clear();    
+        Query q = em.createNamedQuery("Produto.findAll");
+        listaprod = q.getResultList();
+        return listaprod; 
     }
-    
+ 
     public static void refreshEntity(Produto prod)
     {
         EntityManager em = BLLEntityManager.getEntityManager();

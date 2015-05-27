@@ -18,7 +18,8 @@ import javax.swing.UIManager;
  */
 public class Login extends javax.swing.JFrame {
  registo reg = new registo();
- MenuAdmin m = new MenuAdmin();
+ MenuFunc m = new MenuFunc();
+ MenuAdmin ma = new MenuAdmin();
  
   Ficheiro f = new Ficheiro();
     
@@ -195,7 +196,7 @@ UIManager.put("OptionPane.noButtonText", "Não");
     }//GEN-LAST:event_UserRegActionPerformed
 
     private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_ComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -217,7 +218,11 @@ UIManager.put("OptionPane.noButtonText", "Não");
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        m.setVisible(true);
+        
+       
+         ma.setVisible(true);
+      
+      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

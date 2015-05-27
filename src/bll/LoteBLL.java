@@ -5,6 +5,8 @@
  */
 package bll;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.Lote;
@@ -25,6 +27,8 @@ public class LoteBLL {
         em.getTransaction().commit();
         
         em.clear(); 
+        
+        
     }
     
     public static Lote retrieve(int id)
@@ -32,25 +36,44 @@ public class LoteBLL {
         EntityManager em = BLLEntityManager.getEntityManager();
         Query q = em.createNamedQuery("Lote.findByIdLote")
                       .setParameter("idLote", id);
-        Lote lt = (Lote)q.getResultList().get(0);
+         if(!q.getResultList().isEmpty()){
+           Lote lt = (Lote)q.getResultList().get(0);
         return lt;
+        }
+        return null;
+        
     }
-
+    
+    
+      public static List retrieveAll(){
+        List<Lote> lts = new ArrayList<>();
+        EntityManager em = BLLEntityManager.getEntityManager();
+        Query q = em.createNamedQuery("Lote.findAll");
+        lts = q.getResultList();
+        return lts; 
+    }
    
      
     public static void delete(Lote lt)
     {
         EntityManager em = BLLEntityManager.getEntityManager();
         em.getTransaction().begin();
+        lt = em.merge(lt);
         em.remove(lt);
         em.getTransaction().commit();
-        em.clear();    
+        em.clear();   
     }
     
     public static void refreshEntity(Lote lt)
     {
         EntityManager em = BLLEntityManager.getEntityManager();
+        em.getTransaction().begin();
+        lt = em.merge(lt);
+        em.flush();
         em.refresh(lt);
+        
+        em.getTransaction().commit();
+        em.clear(); 
     }
 }
 

@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-import oracle.net.aso.e;
 import static oracle.sql.NUMBER.e;
 
 /**

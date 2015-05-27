@@ -5,10 +5,12 @@
  */
 package bll;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.Cliente;
+
 
 /**
  *
@@ -31,17 +33,21 @@ public class ClienteBLL {
     public static Cliente retrieve(int id)
     {
         EntityManager em = BLLEntityManager.getEntityManager();
-        Query q = em.createNamedQuery("Cliente.findByIdCliente")
-                      .setParameter("idCliente", id);
-        Cliente cli = (Cliente)q.getResultList().get(0);
-        return cli;
+        Query q = em.createNamedQuery("Cliente.findByIdCliente").setParameter("idCliente", id);
+         if(!q.getResultList().isEmpty()){
+            Cliente cli = (Cliente)q.getResultList().get(0);
+            return cli;
+        }
+        return null;
     }
 
      public static List<Cliente> retrieveALL()
     {
+         List<Cliente> listaCliente = new ArrayList<>();
         EntityManager em = BLLEntityManager.getEntityManager();
         Query q = em.createNamedQuery("Cliente.findAll");
-        return q.getResultList();
+        listaCliente= q.getResultList();
+        return listaCliente; 
     }
 
      
@@ -49,9 +55,10 @@ public class ClienteBLL {
     {
         EntityManager em = BLLEntityManager.getEntityManager();
         em.getTransaction().begin();
+        cli = em.merge(cli);
         em.remove(cli);
         em.getTransaction().commit();
-        em.clear();    
+        em.clear();     
     }
     
     public static void refreshEntity(Cliente cli)
