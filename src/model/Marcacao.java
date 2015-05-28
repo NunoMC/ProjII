@@ -47,7 +47,7 @@ public class Marcacao implements Serializable {
    @SequenceGenerator(
         name="seqMarcacao",
         sequenceName="IN_MARCACAO", 
-        allocationSize=25
+        allocationSize=1
     )
        
     @Id

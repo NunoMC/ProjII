@@ -10,11 +10,14 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,10 +34,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VendaMarc implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+        @SequenceGenerator(
+        name="seqVendaMarc",
+        sequenceName="IN_VendaMarc", 
+        allocationSize=1
+        )
+                
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID_VENDAMARC")
-    private BigDecimal idVendamarc;
+         @GeneratedValue(strategy=SEQUENCE, generator="seqVendaMarc")
+    @Column(name = "ID_VENDAMARC", nullable = false)
+    private Integer idVendamarc;
     @JoinColumn(name = "ID_MARCACAO", referencedColumnName = "ID_MARCACAO")
     @ManyToOne
     private Marcacao idMarcacao;
@@ -45,15 +54,15 @@ public class VendaMarc implements Serializable {
     public VendaMarc() {
     }
 
-    public VendaMarc(BigDecimal idVendamarc) {
+    public VendaMarc(Integer idVendamarc) {
         this.idVendamarc = idVendamarc;
     }
 
-    public BigDecimal getIdVendamarc() {
+    public Integer getIdVendamarc() {
         return idVendamarc;
     }
 
-    public void setIdVendamarc(BigDecimal idVendamarc) {
+    public void setIdVendamarc(Integer idVendamarc) {
         this.idVendamarc = idVendamarc;
     }
 

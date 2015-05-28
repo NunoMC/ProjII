@@ -7,15 +7,17 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,17 +35,23 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Linhaproduto.findByIdLinhaproduto", query = "SELECT l FROM Linhaproduto l WHERE l.idLinhaproduto = :idLinhaproduto")})
 public class Linhaproduto implements Serializable {
     private static final long serialVersionUID = 1L;
+     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+        @SequenceGenerator(
+        name="seqLinha",
+        sequenceName="IN_linhaProduto", 
+        allocationSize=1
+        )
+                
     @Basic(optional = false)
     @Column(name = "QUANTIDADE")
-    private BigInteger quantidade;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private BigDecimal quantidade;
     @Basic(optional = false)
     @Column(name = "VALOR")
     private BigDecimal valor;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_LINHAPRODUTO")
-    private BigDecimal idLinhaproduto;
+     @Id
+    @GeneratedValue(strategy=SEQUENCE, generator="seqLinha")
+    @Column(name = "ID_LINHAPRODUTO", nullable = false)
+    private Integer idLinhaproduto;
     @JoinColumn(name = "ID_LOTE", referencedColumnName = "ID_LOTE")
     @ManyToOne(optional = false)
     private Lote idLote;
@@ -54,21 +62,21 @@ public class Linhaproduto implements Serializable {
     public Linhaproduto() {
     }
 
-    public Linhaproduto(BigDecimal idLinhaproduto) {
+    public Linhaproduto(Integer idLinhaproduto) {
         this.idLinhaproduto = idLinhaproduto;
     }
 
-    public Linhaproduto(BigDecimal idLinhaproduto, BigInteger quantidade, BigDecimal valor) {
+    public Linhaproduto(Integer idLinhaproduto, BigDecimal quantidade, BigDecimal valor) {
         this.idLinhaproduto = idLinhaproduto;
         this.quantidade = quantidade;
         this.valor = valor;
     }
 
-    public BigInteger getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(BigInteger quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -80,11 +88,11 @@ public class Linhaproduto implements Serializable {
         this.valor = valor;
     }
 
-    public BigDecimal getIdLinhaproduto() {
+    public Integer getIdLinhaproduto() {
         return idLinhaproduto;
     }
 
-    public void setIdLinhaproduto(BigDecimal idLinhaproduto) {
+    public void setIdLinhaproduto(Integer idLinhaproduto) {
         this.idLinhaproduto = idLinhaproduto;
     }
 

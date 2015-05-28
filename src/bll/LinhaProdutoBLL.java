@@ -5,9 +5,12 @@
  */
 package bll;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.Linhaproduto;
+import model.Lote;
 
 
 /**
@@ -32,26 +35,43 @@ public static void create(Linhaproduto lt)
         EntityManager em = BLLEntityManager.getEntityManager();
         Query q = em.createNamedQuery("Linhaproduto.findByIdLinhaproduto")
                       .setParameter("idLinhaproduto", id);
-        Linhaproduto lt = (Linhaproduto)q.getResultList().get(0);
-        return lt;
+        
+         if(!q.getResultList().isEmpty()){
+        Linhaproduto lp = (Linhaproduto)q.getResultList().get(0);
+        return lp;
     }
-
+         return null;
+    }
    
      
-    public static void delete(Linhaproduto lt)
+    public static void delete(Linhaproduto lp)
     {
         EntityManager em = BLLEntityManager.getEntityManager();
         em.getTransaction().begin();
-        lt = em.merge(lt);
-        em.remove(lt);
+        lp = em.merge(lp);
+        em.remove(lp);
         em.getTransaction().commit();
         em.clear();   
     }
     
-    public static void refreshEntity(Linhaproduto lt)
+    public static void refreshEntity(Linhaproduto lp)
     {
+         EntityManager em = BLLEntityManager.getEntityManager();
+        em.getTransaction().begin();
+        lp = em.merge(lp);
+        em.flush();
+        em.refresh(lp);
+        
+        em.getTransaction().commit();
+        em.clear(); 
+    }
+    
+     public static List retrieveAll(){
+        List<Linhaproduto> lts = new ArrayList<>();
         EntityManager em = BLLEntityManager.getEntityManager();
-        em.refresh(lt);
+        Query q = em.createNamedQuery("Linhaproduto.findAll");
+        lts = q.getResultList();
+        return lts; 
     }
 }
 
