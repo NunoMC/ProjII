@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -217,12 +218,46 @@ UIManager.put("OptionPane.noButtonText", "Não");
     }//GEN-LAST:event_PassRegActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String message = "Escolha como quer entrar!!";
+        String title = "Campo entrar vazio";
         
-       
-         ma.setVisible(true);
-      
-      
+         String[] dad = {"Funcionário","Administrador"};
+         String idItem = (String) ComboBox.getSelectedItem();
+          
+          //verica se os campos estao vazios
+          if(!UserReg.getText().equals("") && !PassReg.getText().equals("")){
+          //verifica se a comboBox recebe um admin ou um funcionario
+              if(idItem.equals("Funcionário"))
+             {
+                 m.setVisible(true);
+             }
+              
+             else if(idItem.equals("Administrador"))
+              {
+                 ma.setVisible(true);
+              }
+        
+                //mensagem que o campo da comboBox esta vazio e pede para preencher 
+                  else{
+                      String reply = (String) JOptionPane.showInputDialog(this, message, title, WIDTH, null, dad, dad[0]);
+                    if(reply.equalsIgnoreCase("Funcionário"))
+                      {
+                       m.setVisible(true);
+                     } 
+                   
+                    else if(reply.equalsIgnoreCase("Administrador")){
+                         ma.setVisible(true);
+                         }
+                      }
+                     }
+          //mensagem que os campos estao vazios
+        else{            
+            String messag = "Campos Vazios!!";
+            String titl = "Insira dados";
+            int reply = JOptionPane.showConfirmDialog(null, messag, titl, JOptionPane.DEFAULT_OPTION);
+            }
+          
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

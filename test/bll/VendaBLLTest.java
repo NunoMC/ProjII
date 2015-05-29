@@ -47,7 +47,7 @@ public class VendaBLLTest {
     @Before
     public void setUp() {
         
-         func = new Funcionario();
+        func = new Funcionario();
         func.setNome("Func");
         
         funcionarioBLL.create(func);
