@@ -158,16 +158,18 @@ public class MenuFunc extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ListProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListProdActionPerformed
-         if (!views.containsKey(cliente)){
+    
+        
+          if (!views.containsKey(produto)){
             
-            JPanel cli= new Clientes();
-            views.put(cliente, cli);
+            JPanel prod = new Produtos();
+            views.put(produto, prod);
             
         }
         closeCurrentView();
-        currentView = views.get(cliente);
-        views.get(cliente).setVisible(true);
-        jPanel1.add(views.get(cliente));
+        currentView = views.get(produto);
+        views.get(produto).setVisible(true);
+        jPanel1.add(views.get(produto));
         this.repaint();
     }//GEN-LAST:event_ListProdActionPerformed
 
@@ -187,16 +189,16 @@ public class MenuFunc extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void ListCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListCliActionPerformed
-        if (!views.containsKey(produto)){
+           if (!views.containsKey(cliente)){
             
-            JPanel prod = new Produtos();
-            views.put(produto, prod);
+            JPanel cli= new Clientes();
+            views.put(cliente, cli);
             
         }
         closeCurrentView();
-        currentView = views.get(produto);
-        views.get(produto).setVisible(true);
-        jPanel1.add(views.get(produto));
+        currentView = views.get(cliente);
+        views.get(cliente).setVisible(true);
+        jPanel1.add(views.get(cliente));
         this.repaint();
     }//GEN-LAST:event_ListCliActionPerformed
 
